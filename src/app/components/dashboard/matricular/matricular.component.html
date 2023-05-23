@@ -1,0 +1,94 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container">
+    <div class="center">
+        <h1 class="tituloBlanco">MATRICULAR</h1>
+    </div>
+</div>
+<br>
+
+
+<mat-card class="contenido">
+    <div style="text-align: left; color:#515151;">
+        <h2><mat-icon class="icons">badge</mat-icon>Buscar estudiante a matricular</h2>
+    </div>
+
+    <form [formGroup]="EstudianteForm">
+        <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Estudiante</mat-label>
+            <mat-select (ngModelChange)="clasesMatriculadas()" formControlName="idestudiante">
+                <mat-option *ngFor="let estudiante of Estudiantes" [value]="estudiante.idestudiante">
+                {{estudiante.codigoestudiante}} - {{estudiante.apellido}} {{estudiante.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <div style="text-align: center;" *ngIf="sinBuscar">
+        <h1>-----CLASES DONDE ESTA MATRICULADO-----</h1>
+    </div>
+    <br>
+    
+    <div class="cardsThird" style="color: #fff">
+        <div *ngFor="let clase of clasesmatriculadas, let i = index">
+            <mat-card [ngStyle]="{'background-color': getColor(i)}">
+                <mat-card-header>
+                    <mat-card-title>{{clase.idclaseNavigation.nombreclase}}</mat-card-title>
+                </mat-card-header>
+                <hr class="example-full-width">
+                <br>
+                <mat-card-content>
+                    <h4 class="textContent"><mat-icon>badge</mat-icon> Codigo:{{clase.idclaseNavigation.codigo}}</h4>
+                    <h4 class="textContent"><mat-icon>edit</mat-icon> Creditos: {{clase.idclaseNavigation.creditos}}</h4>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</mat-card>
+
+<div *ngIf="sinBuscar">
+    <br>
+    <div class="tablealumnos">
+        <table mat-table [dataSource]="clasessinmatricular">
+    
+            <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="codigo">
+              <th mat-header-cell *matHeaderCellDef>CODIGO</th>
+              <td mat-cell *matCellDef="let element">{{element.codigo}}</td>
+            </ng-container>
+          
+            <ng-container matColumnDef="nombreclase">
+              <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+              <td mat-cell *matCellDef="let element">{{element.nombreclase}}</td>
+            </ng-container>
+    
+            <ng-container matColumnDef="creditos">
+                <th mat-header-cell *matHeaderCellDef> CREDITOS </th>
+                <td mat-cell *matCellDef="let element">{{element.creditos}}</td>
+              </ng-container>
+    
+            <ng-container matColumnDef="matricular">
+            <th mat-header-cell *matHeaderCellDef> MATRICULAR </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-flat-button color="primary" type="button" (click)="matricularClase(element.idclase)">
+                    <mat-icon>add</mat-icon>Matricular</button>
+            </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></tr>
+        </table>
+    </div>
+</div>
+
+<div class="footer" *ngIf="!sinBuscar">
+    <app-footpage></app-footpage>
+</div>
+
+<div *ngIf="sinBuscar">
+    <br><br>
+    <app-footpage></app-footpage>
+</div>

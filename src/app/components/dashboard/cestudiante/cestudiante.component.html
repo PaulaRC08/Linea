@@ -1,0 +1,96 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container">
+    <div class="center">
+        <h1 class="tituloBlanco">ESTUDIANTE</h1>
+    </div>
+</div>
+
+<br>
+
+<div style="text-align: center;">
+    <h1>-----CREAR ESTUDIANTE-----</h1>
+</div>
+<mat-card class="contenido">
+    <div style="text-align: left; color:#515151;">
+        <h2><mat-icon class="icons">badge</mat-icon>Dato del estudiante</h2>
+    </div>
+    <form [formGroup]="estudiante" (ngSubmit)=guardarEstudiante()>
+        <div class="cards">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre del Estudiante" formControlName="nombre">
+                <mat-error *ngIf="estudiante.get('nombre')?.hasError('required') && estudiante.get('nombre')?.touched">
+                    Campo requerido
+                  </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Apellido</mat-label>
+                <input matInput placeholder="Apellido del Estudiante" formControlName="apellido">
+                <mat-error *ngIf="estudiante.get('apellido')?.hasError('required') && estudiante.get('apellido')?.touched">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="cards">
+            <mat-form-field class="example-full-width">
+                <mat-label>Codigo</mat-label>
+                <input matInput placeholder="Codigo del Estudiante" formControlName="codigo">
+                <mat-error *ngIf="estudiante.get('codigo')?.hasError('required') && estudiante.get('codigo')?.touched">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Identificacion</mat-label>
+                <input matInput placeholder="Apellido del Estudiante" formControlName="numero">
+                <mat-error *ngIf="estudiante.get('numero')?.hasError('required') && estudiante.get('numero')?.touched">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Correo Electronico</mat-label>
+            <input matInput placeholder="Apellido del Estudiante" formControlName="email">
+            <mat-error *ngIf="estudiante.get('email')?.hasError('required')">
+               Campo requerido
+            </mat-error>
+            <mat-error *ngIf="estudiante.get('email')?.hasError('email')">
+                Email no valido
+            </mat-error>
+        </mat-form-field>
+        <div style="text-align: left; color:#515151;">
+            <h2><mat-icon class="icons">account_box</mat-icon>Inicio Sesion del Estudiante</h2>
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="Nombre del Estudiante" formControlName="usuario">
+            <mat-error *ngIf="estudiante.get('usuario')?.hasError('required') && estudiante.get('usuario')?.touched">
+                Campo requerido
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="pass">
+            <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="estudiante.get('pass')?.hasError('required') && estudiante.get('pass')?.touched">
+                Campo requerido
+            </mat-error>
+            <mat-error *ngIf="!estudiante.get('pass')?.valid && estudiante.get('pass')?.touched && !estudiante.get('pass')?.hasError('required')" style="font-size: small;">
+                Formato de Contraseña Incorrecto[Aa123*!@#$%^&*]
+            </mat-error>
+        </mat-form-field>
+
+        <br>
+        <button mat-raised-button class="example-full-width" color="primary" type="submit" [disabled]="estudiante.invalid">
+            <mat-icon>add_circle</mat-icon>
+            CREAR ESTUDIANTE
+        </button>
+    </form>
+</mat-card>
+
+<br>
+
+
+<br>
+<app-footpage></app-footpage>

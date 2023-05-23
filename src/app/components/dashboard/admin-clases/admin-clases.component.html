@@ -1,0 +1,72 @@
+<app-navbar-admin></app-navbar-admin>
+
+<div class="container">
+    <div class="center">
+        <h1 class="tituloBlanco">ADMINISTRADOR</h1>
+        <br>
+        <button mat-raised-button color="primary" (click)="listAlumnos()">
+            <mat-icon>school</mat-icon>
+            ALUMNOS
+        </button>
+    </div>
+</div>
+<br>
+<mat-card class="contenido">
+    <div style="text-align: right;">
+        <button mat-raised-button color="accent" (click)="generarPDF()"><mat-icon>description</mat-icon>Reporte</button>
+    </div>
+    <div style="text-align: center;">
+        <h1>FILTROS</h1>
+    </div>
+    <form [formGroup]="filtros" (ngSubmit)=filtrar()>
+        <mat-form-field class="example-full-width">
+            <mat-label>Codigo</mat-label>
+            <input matInput placeholder="Ingrese el codigo de la clase" formControlName="codigo">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre clase</mat-label>
+            <input matInput placeholder="Ingrese el nombre de la clase" formControlName="nombre">
+        </mat-form-field>
+    
+        <button mat-raised-button class="example-full-width" color="primary" type="submit">
+            <mat-icon>search</mat-icon>
+            BUSCAR
+        </button>
+    </form>
+</mat-card>
+
+
+<br>
+
+<div style="text-align: center;">
+    <h1>-----CLASES-----</h1>
+</div>
+
+<div style="text-align: center;" *ngIf="haveClases">
+    <h3 style="color: #979797;">NO se encontraron registros <mat-icon class="icons">cancel</mat-icon></h3>
+</div>
+
+<div class="cardsThird">
+    <div *ngFor="let clase of Clases, let i = index">
+        <mat-card [ngStyle]="{'background-color': getColor(i)}">
+            <mat-card-header>
+              <mat-card-title>{{clase.nombreclase}}</mat-card-title>
+            </mat-card-header>
+            <br>
+            <mat-card-content style="padding-bottom: 10px;">
+                <h4 class="textContent"><mat-icon>keyboard</mat-icon>Codigo: {{clase.codigo}}</h4>
+                <h4 class="textContent"><mat-icon>tag</mat-icon> Creditos: {{clase.creditos}}</h4>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <div class="divbuttons">
+                    <button mat-icon-button class="buttoncard" (click)="editarEstudiante(clase.idclase)"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button class="buttoncard" (click)="eliminarEstudiante(clase.idclase)"><mat-icon>delete</mat-icon></button>
+                    <button mat-icon-button class="buttoncard" (click)="fichaEstudiante(clase.idclase)"><mat-icon>visibility</mat-icon></button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
+<br>
+<app-footpage></app-footpage>

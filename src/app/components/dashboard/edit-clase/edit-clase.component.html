@@ -1,0 +1,59 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container">
+    <div class="center">
+        <h1 class="tituloBlanco">CLASE</h1>
+    </div>
+</div>
+<br>
+
+<mat-card class="contenido">
+    <div style="text-align: left; color:#515151;">
+        <h2><mat-icon class="icons">edit</mat-icon>Datos de la clase</h2>
+    </div>
+    <form [formGroup]="clase" (ngSubmit)=editarClase()>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre de Clase</mat-label>
+            <input matInput placeholder="Nombre de Clase" formControlName="nombre">
+            <mat-error *ngIf="clase.get('nombre')?.hasError('required') && clase.get('nombre')?.touched">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+        <div class="cards">
+            <mat-form-field class="example-full-width">
+                <mat-label>Codigo</mat-label>
+                <input matInput placeholder="Codigo del Estudiante" formControlName="codigo">
+                <mat-error *ngIf="clase.get('codigo')?.hasError('required') && clase.get('codigo')?.touched">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Creditos</mat-label>
+                <input matInput type="number" formControlName="credito">
+                <mat-error *ngIf="clase.get('number')?.hasError('required') && clase.get('number')?.touched">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Descripcion</mat-label>
+            <textarea matInput placeholder="Escriba una breve descripcion de la clase" formControlName="descripcion"></textarea>
+            <mat-error *ngIf="clase.get('descripcion')?.hasError('required') && clase.get('descripcion')?.touched">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Temario</mat-label>
+            <textarea matInput placeholder="Escriba el temario de la clase" formControlName="temario"></textarea>
+            <mat-error *ngIf="clase.get('temario')?.hasError('required') && clase.get('temario')?.touched">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button class="example-full-width" color="primary" type="submit" [disabled]="clase.invalid">
+            <mat-icon>add_circle</mat-icon>
+            EDITAR CLASE
+        </button>
+    </form>
+
+</mat-card>
+<br><br>
+<app-footpage></app-footpage>

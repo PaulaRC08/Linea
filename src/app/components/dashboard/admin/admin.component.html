@@ -1,0 +1,76 @@
+<app-navbar-admin></app-navbar-admin>
+
+<div class="container">
+    <div class="center">
+        <h1 class="tituloBlanco">ADMINISTRADOR</h1>
+        <br>
+        <button mat-raised-button color="primary" (click)="listClases()">
+            <mat-icon>school</mat-icon>
+            CLASES
+        </button>
+    </div>
+</div>
+<br>
+<mat-card class="contenido">
+    <div style="text-align: right;">
+        <button mat-raised-button color="accent" (click)="generarPDF()"><mat-icon>description</mat-icon>Reporte</button>
+    </div>
+    <div style="text-align: center;">
+        <h1>FILTROS</h1>
+    </div>
+    <form [formGroup]="filtros" (ngSubmit)=filtrar()>
+        <mat-form-field class="example-full-width">
+            <mat-label>Identificacion</mat-label>
+            <input matInput placeholder="Ingrese la identificacion del estudiante" formControlName="identificacion">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Ingrese la identificacion del estudiante" formControlName="nombre">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Apellido</mat-label>
+            <input matInput placeholder="Ingrese la identificacion del estudiante" formControlName="apellido">
+        </mat-form-field>
+    
+        <button mat-raised-button class="example-full-width" color="primary" type="submit">
+            <mat-icon>search</mat-icon>
+            BUSCAR
+        </button>
+    </form>
+</mat-card>
+
+
+<br>
+
+<div style="text-align: center;">
+    <h1>-----ESTUDIANTES-----</h1>
+</div>
+
+<div style="text-align: center;" *ngIf="haveEstudiantes">
+    <h3 style="color: #979797;">NO se encontraron registros <mat-icon class="icons">cancel</mat-icon></h3>
+</div>
+
+<div class="cardsThird">
+    <div *ngFor="let estudiante of Estudiantes, let i = index">
+        <mat-card [ngStyle]="{'background-color': getColor(i)}">
+            <mat-card-header>
+              <mat-card-title>{{estudiante.nombre}} {{estudiante.apellido}}</mat-card-title>
+            </mat-card-header>
+            <br>
+            <mat-card-content style="padding-bottom: 10px;">
+                <h4 class="textContent"><mat-icon>badge</mat-icon> {{estudiante.numeroidentificacion}}</h4>
+                <h4 class="textContent"><mat-icon>edit</mat-icon> Numero clases: {{estudiante.tbEstudianteclases.length}}</h4>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <div class="divbuttons">
+                    <button mat-icon-button class="buttoncard" (click)="eliminarEstudiante(estudiante.idestudiante)"><mat-icon>delete</mat-icon></button>
+                    <button mat-icon-button class="buttoncard" (click)="editarEstudiante(estudiante.idestudiante)"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button class="buttoncard" (click)="fichaEstudiante(estudiante.idestudiante)"><mat-icon>visibility</mat-icon></button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
+<br>
+<app-footpage></app-footpage>

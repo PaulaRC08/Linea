@@ -1,0 +1,48 @@
+
+<div class="layout">
+    <div class="container">
+        <mat-card class="example-card">
+            <mat-card-header style="justify-content: center;">
+              <mat-card-title class="titulo">CAMBIAR CONTRASEÑA</mat-card-title>
+            </mat-card-header>
+            <br><br>
+            <mat-card-content>
+                <form [formGroup]="recuperar" (ngSubmit)=cambiarPassword()>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="recuperar.get('password')?.hasError('required') && recuperar.get('password')?.touched">
+                            Campo requerido
+                        </mat-error>
+                        <mat-error *ngIf="!recuperar.get('password')?.valid && recuperar.get('password')?.touched && !recuperar.get('password')?.hasError('required')" style="font-size: small;">
+                            Formato de Contraseña Incorrecto[Aa123*!@#$%^&*]
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Confirmar Contraseña</mat-label>
+                        <input matInput [type]="hidecon ? 'password' : 'text'" formControlName="ConfPassword">
+                        <button mat-icon-button matSuffix type="button" (click)="hidecon = !hidecon" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidecon">
+                          <mat-icon>{{hidecon ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="recuperar.get('ConfPassword')?.hasError('required') && recuperar.get('ConfPassword')?.touched">
+                            Campo requerido
+                        </mat-error>
+                        <mat-error *ngIf="!recuperar.get('ConfPassword')?.valid && recuperar.get('ConfPassword')?.touched && !recuperar.get('ConfPassword')?.hasError('required')" style="font-size: small;">
+                            Formato de Contraseña Incorrecto[Aa123*!@#$%^&*]
+                        </mat-error>
+                    </mat-form-field>
+                    
+                    <br><br>
+                    <button mat-raised-button color="accent" class="example-full-width" type="submit">
+                        CAMBIAR CONTRASEÑA
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </form>                     
+            </mat-card-content>
+            <app-loading *ngIf="loading"></app-loading>
+        </mat-card>     
+    </div>
+</div>

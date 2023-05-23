@@ -1,0 +1,71 @@
+h1, h2, h3, h4, h5 {font-family: 'Josefin Sans', sans-serif;}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh;
+    min-height: 20vh;
+    background: linear-gradient(rgba(0,0,0,0.8),rgba(0, 0, 0, 0.8)),url(../../../../assets/img/TituloImg.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.tituloBlanco{
+    color: #fff;
+    font-family: Josefin Sans, sans-serif;
+    font-size: 5vw;
+    padding: 0;
+    margin: 0;
+}
+
+:host {
+    display: block;
+    background-color: #ECECEC;
+    min-height: 100vh;
+}
+
+.contenido{
+    background-color: white;
+    margin: auto;
+    padding: 1rem;
+}
+@media (min-width: 900px) {
+    .contenido {width: 80%;}
+}
+
+@media (max-width: 1000px) {
+.contenido {width: 95%;}
+}
+
+.cardsThird{
+    margin: auto;
+    display: grid;
+    grid-gap: 1rem;
+    width: 90%;
+    color: white;
+}
+
+@media (min-width: 700px) {
+.cardsThird { grid-template-columns: repeat(2, 1fr);}
+}
+
+/* Screen larger than 900px? 3 columns */
+@media (min-width: 1000px) {
+.cardsThird { grid-template-columns: repeat(3, 1fr); margin: auto;}
+}
+
+.icons{
+    vertical-align: middle;
+}
+
+.footer{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.tablealumnos{
+    margin: auto;
+    width: 90%;
+}

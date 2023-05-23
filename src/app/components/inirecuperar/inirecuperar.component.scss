@@ -1,0 +1,33 @@
+.layout{
+    
+    background: linear-gradient(rgba(0,0,0,0.8),rgba(0, 0, 0, 0.8)),url(../../../assets/img/Fondo3.jpg);
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.example-card{
+    max-width: 60vh; 
+    margin: auto;
+}
+.example-full-width {
+    width: 100%;
+}
+
+.titulo{
+    font-size: 1.8rem;
+}
+
+.recuperar{
+    color: #388e3b;
+    font-weight: 700;
+    text-decoration: underline;
+    font-family: 'Josefin Sans', sans-serif !important;
+}

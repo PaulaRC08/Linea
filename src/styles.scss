@@ -1,1 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core();
+$bright-navy-blue-palette: (
+  50: #e8f5e9,
+  100: #c8e6c9,
+  200: #a5d6a7,
+  300: #81c784,
+  400: #66bb6a,
+  500: #4caf4f,
+  600: #43a046,
+  700: #388e3b,
+  800: #2e7d31,
+  900: #1b5e1f,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+$gainsboro-palette: (
+  50: #f9f9fa,
+  100: #eeeeee,
+  200: #e3e3e3,
+  300: #d1d1d1,
+  400: #acacac,
+  500: #8b8b8b,
+  600: #646464,
+  700: #515151,
+  800: #333333,
+  900: #131313,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+$crimson-palette: (
+  50: #f7e6e7,
+  100: #eac2c3,
+  200: #cc8983,
+  300: #b45f56,
+  400: #b44131,
+  500: #b03114,
+  600: #a32914,
+  700: #942110,
+  800: #871b0b,
+  900: #771400,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+$metadec-primary: mat.define-palette($bright-navy-blue-palette, 800, 300, 900);
+$metadec-accent: mat.define-palette($gainsboro-palette, 800, 300, 500);
+$metadec-warn: mat.define-palette($crimson-palette, 700);
+$kids-typography: mat.define-typography-config(
+  $font-family:'Josefin Sans',
+);
+$metadec-theme: mat.define-light-theme((
+  color: (
+    primary: $metadec-primary,
+    accent: $metadec-accent,
+    warn: $metadec-warn,
+  ),
+  typography: $kids-typography,
+));
+@include mat.all-component-themes($metadec-theme);
+
+html, body { height: 100%; margin: 0;}
+body { margin: 0; font-family: 'Josefin Sans', sans-serif; }
+button {font-family: 'Josefin Sans', sans-serif !important; }
+
+.center {
+  text-align: center;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+body::-webkit-scrollbar {
+  width: 7px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: rgb(37, 37, 37);        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(138, 138, 138);    /* color of the scroll thumb */
+ /* creates padding around scroll thumb */
+}

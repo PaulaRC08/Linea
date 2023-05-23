@@ -1,0 +1,11 @@
+<mat-toolbar color="accent">
+    <a class="titlenavbar" [routerLink]="ruta"><mat-icon>school</mat-icon></a>
+    <a class="titlenavbar" [routerLink]="ruta">INSTITUTO</a>
+    <span class="example-spacer"></span>
+    <button mat-flat-button color="accent" (click)="centro()" *ngIf="isAdmin"><mat-icon>location_city</mat-icon>Centro</button>
+    <button mat-flat-button color="accent" (click)="estudiante()" *ngIf="isAdmin"><mat-icon>person</mat-icon>Estudiante</button>
+    <button mat-flat-button color="accent" (click)="matricular()" *ngIf="isAdmin"><mat-icon>school</mat-icon>Matricular</button>
+    <button mat-flat-button color="accent" (click)="clase()" *ngIf="isAdmin"><mat-icon>edit</mat-icon>Clase</button>
+    <hr style="height: 60%;" *ngIf="isAdmin">
+    <button mat-flat-button color="accent" (click)="logOut()"><mat-icon>logout</mat-icon>Salir</button>
+</mat-toolbar>

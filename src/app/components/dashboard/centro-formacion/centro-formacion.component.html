@@ -1,0 +1,45 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container">
+    <div class="center">
+        <h1 class="tituloBlanco">CENTRO FORMACIÓN</h1>
+    </div>
+</div>
+
+<br><br>
+
+<div style="text-align: center;">
+    <h1>-----CREAR CENTRO DE FORMACIÓN-----</h1>
+</div>
+<mat-card class="contenido">
+    <div style="text-align: left; color:#515151;">
+        <h2><mat-icon class="icons">apartment</mat-icon>Dato del centro</h2>
+    </div>
+    <form [formGroup]="centroFormacion" (ngSubmit)=crearCentro()>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre Centro</mat-label>
+            <input matInput placeholder="Nombre del Centro de formacion" formControlName="nombre">
+            <mat-error *ngIf="centroFormacion.get('nombre')?.hasError('required') && centroFormacion.get('nombre')?.touched">
+                Campo requerido
+                </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Direccion</mat-label>
+            <input matInput placeholder="Direccion del centro" formControlName="direccion">
+            <mat-error *ngIf="centroFormacion.get('direccion')?.hasError('required') && centroFormacion.get('direccion')?.touched">
+                Campo requerido
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button class="example-full-width" color="primary" type="submit" [disabled]="centroFormacion.invalid">
+            <mat-icon>send</mat-icon>
+            CREAR CENTRO DE FORMACION
+        </button>
+    </form>
+</mat-card>
+
+<br>
+<br>
+
+<br>
+<app-footpage></app-footpage>

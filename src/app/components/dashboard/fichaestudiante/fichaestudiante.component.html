@@ -1,0 +1,64 @@
+<app-navbar-admin></app-navbar-admin>
+
+<div class="container">
+    <div class="center">
+        <h1 class="tituloBlanco">FICHA ESTUDIANTE</h1>
+    </div>
+</div>
+<br>
+
+<div class="fondoCirculos">
+    <div class="cards" style="background-color: white; margin: auto; ">
+        <div>
+            <img src="../../../../assets/img/Estudiante.png" width="100%" height="100%">
+        </div>
+        <div class="concepto">
+            <div>
+                <h1 color="primary" style="font-weight: 400; text-align: left; font-size: 5vh;">{{nombre}}</h1>
+                <h1 color="primary" style="font-weight: 400; text-align: left; font-size: 3vh;">{{apellido}}</h1>
+                <hr>
+                <p style ="line-height: 150%; text-align: justify;">
+                    <mat-icon>person</mat-icon>
+                    Codigo Estudiante: {{codigo}}
+                </p>
+                <p style ="line-height: 150%; text-align: justify;">
+                    <mat-icon>badge</mat-icon>
+                    Identificacion: {{identificacion}}
+                </p>
+                <p style ="line-height: 150%; text-align: justify;">
+                    <mat-icon>note</mat-icon>
+                    Clases matriculadas: {{clases.length}}
+                </p>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<br>
+<div style="text-align: center;">
+    <h1>-----CLASES DONDE ESTA MATRICULADO-----</h1>
+</div>
+<br>
+
+<div class="cardsThird" style="color: #fff">
+    <div *ngFor="let clase of clases, let i = index">
+        <mat-card [ngStyle]="{'background-color': getColor(i)}">
+            <mat-card-header>
+              <mat-card-title>{{clase.idclaseNavigation.nombreclase}}</mat-card-title>
+            </mat-card-header>
+            <hr class="example-full-width">
+            <br>
+            <mat-card-content>
+                <h4 class="textContent"><mat-icon>badge</mat-icon> Codigo:{{clase.idclaseNavigation.codigo}}</h4>
+                <h4 class="textContent"><mat-icon>edit</mat-icon> Creditos: {{clase.idclaseNavigation.creditos}}</h4>
+            </mat-card-content>
+            <mat-card-actions align="end">
+              <button mat-button class="buttoncard" (click)="fichaClase(clase.idclaseNavigation.idclase)">Ver<mat-icon>visibility</mat-icon></button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
+<br>
+<app-footpage></app-footpage>
